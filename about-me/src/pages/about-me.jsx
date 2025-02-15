@@ -32,7 +32,7 @@ export default function AboutMe() {
       country: "China",
       city: "Beijing",
       coordinates: [116.4074, 39.9042],
-      markerOffset: -15,
+      markerOffset: 20,
     },
     {
       label: "Experience",
@@ -49,21 +49,21 @@ export default function AboutMe() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-green-100">
-      <Card className="w-full max-w-6xl shadow-lg">
+      <Card className="w-full max-w-6xl shadow-xl border-none">
         <CardHeader className="text-center font-mono">
           <CardTitle className="text-2xl font-bold">A Map of Me</CardTitle>
           <CardDescription>
             {hoveredItem ? (
-              <div className={`${isPOI(hoveredItem) && 'text-blue-500 font-bold'}`}>{hoveredItem}</div>
+              <p className={`${isPOI(hoveredItem) && 'text-blue-500 font-bold'}`}>{hoveredItem}</p>
             ) : (
-              <div>
+              <p>
                 Hover over a <span className="font-bold text-blue-300 hover:text-blue-500">highlighted</span> country to find out more!
-              </div>
+              </p>
             )}
           </CardDescription>
         </CardHeader>
         <CardContent>
-        <ComposableMap projection="geoEqualEarth" projectionConfig={{ scale: 150 }} className="border rounded-lg drop-shadow-md">
+        <ComposableMap projection="geoEqualEarth" projectionConfig={{ scale: 150 }} className="border rounded-lg">
           <ZoomableGroup zoom={1.1} center={ [12, 0] }>
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
@@ -77,7 +77,7 @@ export default function AboutMe() {
                       key={geo.rsmKey}
                       geography={geo}
                       className={`outline-none stroke-gray-300 stroke-[0.5px] transition-all duration-200
-                          ${isPOI(countryName) ? isHighlighted ? 'fill-blue-500' : 'fill-blue-200': 'fill-gray-100 hover:fill-gray-200'}
+                          ${isPOI(countryName) ? isHighlighted ? 'fill-blue-400' : 'fill-blue-200': 'fill-gray-100 hover:fill-gray-200'}
                         `}
                       onMouseEnter={() => setHoveredItem(countryName)}
                       onMouseLeave={() => setHoveredItem(null)}
@@ -97,7 +97,7 @@ export default function AboutMe() {
                 <text
                   textAnchor="middle"
                   y={markerOffset}
-                  className={`font-mono text-xs select-none ${hoveredItem === label || hoveredItem === country ? "fill-red-500" : ""}`}
+                  className={`font-mono font-bold text-xs select-none ${hoveredItem === label || hoveredItem === country ? "fill-red-500" : ""}`}
                 >
                   {label}
                 </text>
@@ -107,7 +107,7 @@ export default function AboutMe() {
         </ComposableMap>
         </CardContent>
         <CardFooter className="font-mono text-sm text-muted-foreground flex flex-col items-center">
-          <div className="italic select-none">Drag the map to move and scroll to zoom.</div>
+          <p className="italic select-none">Drag the map to move and scroll to zoom.</p>
           <HoverCard open={!!hoveredItem && !!getPOI(hoveredItem)}>
             <HoverCardTrigger/>
             <HoverCardContent className="w-96 font-mono" side="top">
@@ -124,8 +124,7 @@ export default function AboutMe() {
           </HoverCard>
         </CardFooter>
       </Card>
-      
-      <div className="text-sm text-muted-foreground italic absolute bottom-5 select-none font-mono">By Brandon Tan</div>
+      <p className="text-sm text-muted-foreground italic absolute bottom-5 select-none font-mono">By Brandon Tan</p>
     </div>
   )
 }

@@ -8,4 +8,4 @@ export const COURSES =
   "I've taken; 1511, 1521, 1531, 2521, 2511, 3121, 2041, and 6080."
 
 export const EXPERIENCE =
-  "Tbh not much, but that's why I want to be a trainee and do projects as a team! I do have a fair bit of frontend experience from 6080 working in React and using various libraries."
+  "Tbh not much, but that's why I want to be a trainee and do projects as a team! I do have some  frontend experience from 6080 working in React and using various libraries."

@@ -112,25 +112,25 @@ export default function AboutMe() {
         </CardContent>
         <CardFooter className="font-mono text-xs sm:text-sm text-muted-foreground flex flex-col items-center pt-3 pb-1">
           <p className="italic select-none mb-2">Drag to move and scroll to zoom.</p>
-          <HoverCard open={!!hoveredItem && !!getPOI(hoveredItem)}>
-            <HoverCardTrigger />
-            <HoverCardContent className="w-72 sm:w-80 md:w-96 font-mono" side="top">
-              {hoveredItem && getPOI(hoveredItem) && (
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold ml-1">{getPOI(hoveredItem)?.label}</h3>
-                  <Badge variant="secondary" className="mb-2 text-xs sm:text-sm">
-                    {getPOI(hoveredItem)?.city}, {getPOI(hoveredItem)?.country}
-                  </Badge>
-                  <p className="text-xs sm:text-sm text-muted-foreground">{getPOI(hoveredItem)?.desc}</p>
-                </div>
-              )}
-            </HoverCardContent>
-          </HoverCard>
         </CardFooter>
       </Card>
       <footer className="text-xs sm:text-sm text-muted-foreground italic select-none font-mono mt-8">
         By Brandon Tan
       </footer>
+      <HoverCard open={!!hoveredItem && !!getPOI(hoveredItem)}>
+        <HoverCardTrigger />
+        <HoverCardContent className="w-72 sm:w-80 md:w-96 font-mono" side="top">
+          {hoveredItem && getPOI(hoveredItem) && (
+            <div>
+              <h3 className="text-base sm:text-lg font-semibold">{getPOI(hoveredItem)?.label}</h3>
+              <Badge variant="secondary" className="mb-2 text-xs">
+                {getPOI(hoveredItem)?.city}, {getPOI(hoveredItem)?.country}
+              </Badge>
+              <p className="text-xs sm:text-sm text-muted-foreground">{getPOI(hoveredItem)?.desc}</p>
+            </div>
+          )}
+        </HoverCardContent>
+      </HoverCard>
     </div>
   )
 }
